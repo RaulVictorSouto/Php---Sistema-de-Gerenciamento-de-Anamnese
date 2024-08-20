@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="styles.css" rel="stylesheet">
+    <title>Lista de Pacientes</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Lista de Pacientes</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Data de Cadastro</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                    // chama o arquivo de conexão
+                    require '../backend/connection.php';
+
+                    if ($result->num_rows > 0) {
+                        // cria a lista de pacientes
+                        while($row = $result->fetch_assoc()) {
+                            echo "<tr>";
+                            echo "<td>" . htmlspecialchars($row["NOME"]) . "</td>";
+                            echo "<td>" . htmlspecialchars($row["DataCadastroPaciente"]) . "</td>";
+                            echo "<td>";
+                            echo "<a href='edit.php?id=" . urlencode($row["IdPaciente"]) . "'>Editar</a> | ";
+                            echo "<a href='delete.php?id=" . urlencode($row["IdPaciente"]) . "' onclick='return confirm(\"Você tem certeza que deseja excluir este paciente?\");'>Excluir</a>";
+                            echo "</td>";
+                            echo "</tr>";
+                        }
+                    } else {
+                        echo "<tr><td colspan='3'>Nenhum paciente encontrado</td></tr>";
+                    }
+                ?>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
+
