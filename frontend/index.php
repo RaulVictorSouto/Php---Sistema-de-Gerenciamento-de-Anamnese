@@ -40,6 +40,11 @@
                 ?>
             </tbody>
         </table>
+
+        <div class="botaoCadastrar">
+            <button onclick="window.location.href='cadastroPaciente.php';">Cadastrar Novo Paciente</button>
+        </div>
+        
     </div>
 </body>
 </html>
