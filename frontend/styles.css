@@ -61,4 +61,12 @@ tr:hover {
     text-decoration: underline;
 }
 
+.dadosBasicos, .telefones, .endereco {
+    margin-bottom: 20px;
+}
+
+select {
+    appearance: none;
+    background-color: #fff;
+}
 

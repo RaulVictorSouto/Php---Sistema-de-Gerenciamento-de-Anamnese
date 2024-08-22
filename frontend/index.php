@@ -44,6 +44,26 @@
         <div class="botaoCadastrar">
             <button onclick="window.location.href='cadastroPaciente.php';">Cadastrar Novo Paciente</button>
         </div>
+
+        <script>
+            // função para exibir o alerta com base na mensagem da query string
+            function showAlert(message) {
+                if (message === 'success') {
+                    alert('Paciente cadastrado com sucesso!');
+                } else if (message === 'error') {
+                    alert('Erro ao cadastrar paciente.');
+                }
+            }
+
+            // obter a mensagem da query string
+            const urlParams = new URLSearchParams(window.location.search);
+            const message = urlParams.get('message');
+            
+            //mostrar o alerta se houver mensagem
+            if (message) {
+                showAlert(message);
+            }
+        </script>
         
     </div>
 </body>

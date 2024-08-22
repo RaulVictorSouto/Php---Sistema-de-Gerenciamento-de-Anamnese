@@ -1,28 +1,30 @@
 <?php
-    //chama a classe de conexão
-    require 'connection.php';
+// Chama a classe de conexão
+require './connection.php';
 
-    //pega os dados do formulário
-    $nome = $_POST['nome'];
-    $sobrenome = $_POST['sobrenome'];
-    $data_nascimento = $_POST['data_nascimento'];
-    $genero = $_POST['genero'];
-    $cpf = $_POST['cpf'];
-    $rg = $_POST['rg'];
-    $certidao = $_POST['certidao'];
-    $naturalidade = $_POST['naturalidade'];
-    $estadoCivil = $_POST['estado_civil'];
-    $telefone = $_POST['telefone'];
-    $celular = $_POST['celular'];
-    $cep = $_POST['cep'];
-    $logradouro = $_POST['logradouro'];
-    $numeroEndereco = $_POST['numero'];
-    $bairro = $_POST['bairro'];
-    $cidade = $_POST['cidade'];
-    $estado = $_POST['estado'];
+// Pega os dados do formulário
+// mysqli_real_escape_string -> limpar a string que, no caso, será enviada ao banco de dados.
+//Evita SQL Injection
+$nome = mysqli_real_escape_string($conn, $_POST['nome'] ?? '');
+$sobrenome = mysqli_real_escape_string($conn, $_POST['sobrenome'] ?? '');
+$data_nascimento = mysqli_real_escape_string($conn, $_POST['data_nascimento'] ?? '');
+$genero = mysqli_real_escape_string($conn, $_POST['genero'] ?? '');
+$cpf = mysqli_real_escape_string($conn, $_POST['cpf'] ?? '');
+$rg = mysqli_real_escape_string($conn, $_POST['rg'] ?? '');
+$certidao = mysqli_real_escape_string($conn, $_POST['certidao'] ?? '');
+$naturalidade = mysqli_real_escape_string($conn, $_POST['naturalidade'] ?? '');
+$estadoCivil = mysqli_real_escape_string($conn, $_POST['estadoCivil'] ?? '');
+$telefone = mysqli_real_escape_string($conn, $_POST['telefone'] ?? '');
+$celular = mysqli_real_escape_string($conn, $_POST['celular'] ?? '');
+$cep = mysqli_real_escape_string($conn, $_POST['cep'] ?? '');
+$logradouro = mysqli_real_escape_string($conn, $_POST['rua'] ?? '');
+$numeroEndereco = mysqli_real_escape_string($conn, $_POST['numero'] ?? '');
+$bairro = mysqli_real_escape_string($conn, $_POST['bairro'] ?? '');
+$cidade = mysqli_real_escape_string($conn, $_POST['cidade'] ?? '');
+$estado = mysqli_real_escape_string($conn, $_POST['estado'] ?? '');
 
-    //código sql
-    $sql = "INSERT INTO tblpacientes 
+// Código SQL
+$sql = "INSERT INTO tblpacientes 
     (NomePaciente, 
     SobrenomePaciente, 
     DataNascimentoPaciente, 
@@ -39,48 +41,20 @@
     NumeroEnderecoPaciente,
     BairroPaciente, 
     CidadePaciente, 
-    EstadoPaciente) 
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    EstadoPaciente,
+    DataCadastroPaciente) 
+    VALUES ('$nome', '$sobrenome', '$data_nascimento', '$genero', '$cpf', '$rg', '$certidao', '$naturalidade',
+    '$estadoCivil', '$telefone', '$celular', '$cep', '$logradouro', '$numeroEndereco', '$bairro', '$cidade', '$estado', CURRENT_TIMESTAMP)";
 
-    $stmt = $conn->prepare($sql);
+// Executa a declaração
+if ($conn->query($sql) === TRUE) {
+    header("Location: ../frontend/index.php?message=success");
+} else {
+    // Exibe a mensagem de erro completa para depuração
+    echo "Erro: " . $conn->error;
+    exit();
+}
 
-    // verifica se a preparação foi bem-sucedida
-    if (!$stmt) {
-    die("Erro na preparação da declaração: " . $conn->error);
-    }
-
-    // Vincula os parâmetros
-    $stmt->bind_param("ssssssssssssssss", 
-    $nome, 
-    $sobrenome, 
-    $data_nascimento, 
-    $genero, 
-    $cpf, 
-    $rg, 
-    $certidao, 
-    $naturalidade, 
-    $estadoCivil, 
-    $telefone, 
-    $celular, 
-    $cep, 
-    $logradouro, 
-    $numeroEndereco, 
-    $bairro, 
-    $cidade, 
-    $estado);
-
-    // Executa a declaração
-    if ($stmt->execute()) 
-    {
-        echo "Paciente cadastrado com sucesso!";
-    } 
-    else 
-    {
-        echo "Erro: " . $stmt->error;
-    }
-
-    $stmt->close();
-    $conn->close();
-
-
+$conn->close();
 ?>
+
