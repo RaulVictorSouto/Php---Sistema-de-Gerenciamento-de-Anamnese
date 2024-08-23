@@ -1,60 +1,16 @@
 <?php
-// Chama a classe de conexão
 require './connection.php';
 
-// Pega o id do paciente
-$idPaciente = mysqli_real_escape_string($conn, $_GET['id'] ?? '');
-
+// Verifica se o ID do paciente foi fornecido
+$idPaciente = mysqli_real_escape_string($conn, $_POST['id'] ?? '');
 if (empty($idPaciente)) {
-    die("ID do paciente não fornecido.");
-}
-
-// Função para preencher os dados do paciente nos campos do formulário
-function SetDados($idPaciente, $conn) 
-{
-    // Buscar os dados do paciente
-    $sql = "SELECT * FROM tblpacientes WHERE IdPaciente = '$idPaciente'";
-    $result = $conn->query($sql);
-
-    // Verifica se a consulta retornou algum resultado
-    if ($result->num_rows > 0) {
-        // Retorna os dados do paciente como um array associativo
-        return $result->fetch_assoc();
-    } else {
-        return null;
-    }
-}
-
-// Chama a SetDados
-$dadosPaciente = SetDados($idPaciente, $conn);
-
-if ($dadosPaciente) {
-    // Preenche os dados dos pacientes se eles existirem
-    $nome = $dadosPaciente['NomePaciente'] ?? '';
-    $sobrenome = $dadosPaciente['SobrenomePaciente'] ?? '';
-    $data_nascimento = $dadosPaciente['DataNascimentoPaciente'] ?? '';
-    $genero = $dadosPaciente['GeneroPaciente'] ?? '';
-    $cpf = $dadosPaciente['CpfPaciente'] ?? '';
-    $rg = $dadosPaciente['RgPaciente'] ?? '';
-    $certidao = $dadosPaciente['CertidaoPaciente'] ?? '';
-    $naturalidade = $dadosPaciente['NaturalidadePaciente'] ?? '';
-    $estadoCivil = $dadosPaciente['EstadoCivilPaciente'] ?? '';
-    $telefone = $dadosPaciente['TelefonePaciente'] ?? '';
-    $celular = $dadosPaciente['CelularPaciente'] ?? '';
-    $cep = $dadosPaciente['CepPaciente'] ?? '';
-    $logradouro = $dadosPaciente['LogradouroPaciente'] ?? '';
-    $numeroEndereco = $dadosPaciente['NumeroEnderecoPaciente'] ?? '';
-    $bairro = $dadosPaciente['BairroPaciente'] ?? '';
-    $cidade = $dadosPaciente['CidadePaciente'] ?? '';
-    $estado = $dadosPaciente['EstadoPaciente'] ?? '';
-} else {
-    // Se não houver dados, inicializa as variáveis com valores vazios
-    $nome = $sobrenome = $data_nascimento = $genero = $cpf = $rg = $certidao = $naturalidade = $estadoCivil = $telefone = $celular = $cep = $logradouro = $numeroEndereco = $bairro = $cidade = $estado = '';
+    echo "ID do paciente não fornecido.";
+    exit();
 }
 
 // Verifica se os dados foram enviados via POST
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Obtém os dados do formulário
+    // Obtém e sanitiza os dados do formulário
     $nome = mysqli_real_escape_string($conn, $_POST['nome'] ?? '');
     $sobrenome = mysqli_real_escape_string($conn, $_POST['sobrenome'] ?? '');
     $data_nascimento = mysqli_real_escape_string($conn, $_POST['data_nascimento'] ?? '');
@@ -108,3 +64,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 $conn->close();
 ?>
+
+

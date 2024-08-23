@@ -47,11 +47,21 @@
 
         <script>
             // função para exibir o alerta com base na mensagem da query string
-            function showAlert(message) {
+            function showAlertInsert(message) 
+            {
                 if (message === 'success') {
                     alert('Paciente cadastrado com sucesso!');
                 } else if (message === 'error') {
                     alert('Erro ao cadastrar paciente.');
+                }
+            }
+
+            function showAlertUpdate(message) 
+            {
+                if (message === 'successUpdate') {
+                    alert('Paciente atualizado com sucesso!');
+                } else if (message === 'error') {
+                    alert('Erro ao atualizar paciente.');
                 }
             }
 
@@ -60,8 +70,9 @@
             const message = urlParams.get('message');
             
             //mostrar o alerta se houver mensagem
-            if (message) {
-                showAlert(message);
+            if (message) 
+            {
+                showAlertInsert(message);
             }
         </script>
         

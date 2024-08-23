@@ -9,9 +9,58 @@
 <body>
     <div class="container">
         <h1>Atualizar Dados de Paciente</h1>
-        <form action="../backend/insertPaciente.php" method="POST">
 
+        <?php
+            require '../backend/connection.php';
+            $idPaciente = mysqli_real_escape_string($conn, $_GET['id'] ?? '');
+
+            if (empty($idPaciente)) {
+                die("ID do paciente não fornecido.");
+            }
+            
+            //função para preencher os dados do paciente nos campos do formulário
+            function SetDados($idPaciente, $conn) 
+            {
+                $sql = "SELECT * FROM anamnese.tblpacientes WHERE IdPaciente = '$idPaciente'";
+                $result = $conn->query($sql);
+            
+                if ($result->num_rows > 0) {
+                    return $result->fetch_assoc();
+                } else {
+                    return null;
+                }
+            }
+            
+            //chama a SetDados
+            $dadosPaciente = SetDados($idPaciente, $conn);
+
+            if ($dadosPaciente) {
+                $nome = $dadosPaciente['NomePaciente'] ?? '';
+                $sobrenome = $dadosPaciente['SobrenomePaciente'] ?? '';
+                $data_nascimento = $dadosPaciente['DataNascimentoPaciente'] ?? '';
+                $genero = $dadosPaciente['GeneroPaciente'] ?? '';
+                $cpf = $dadosPaciente['CpfPaciente'] ?? '';
+                $rg = $dadosPaciente['RgPaciente'] ?? '';
+                $certidao = $dadosPaciente['CertidaoPaciente'] ?? '';
+                $naturalidade = $dadosPaciente['NaturalidadePaciente'] ?? '';
+                $estadoCivil = $dadosPaciente['EstadoCivilPaciente'] ?? '';
+                $telefone = $dadosPaciente['TelefonePaciente'] ?? '';
+                $celular = $dadosPaciente['CelularPaciente'] ?? '';
+                $cep = $dadosPaciente['CepPaciente'] ?? '';
+                $logradouro = $dadosPaciente['LogradouroPaciente'] ?? '';
+                $numeroEndereco = $dadosPaciente['NumeroEnderecoPaciente'] ?? '';
+                $bairro = $dadosPaciente['BairroPaciente'] ?? '';
+                $cidade = $dadosPaciente['CidadePaciente'] ?? '';
+                $estado = $dadosPaciente['EstadoPaciente'] ?? '';
+            }
+
+        ?>
+
+
+        <form action="../backend/updatePaciente.php" method="POST">
             <!-- Dados basicos -->
+            <input type="hidden" id="id" name="id" value="<?php echo htmlspecialchars($idPaciente); ?>">
+
             <div class="dadosBasicos">
                 <label for="nome">Nome:</label>
                 <input type="text" id="nome" name="nome" value="<?php echo $nome; ?>" required>
@@ -25,10 +74,10 @@
                 <label for="genero">Gênero:</label>
                 <select id="genero" name="genero" required>
                     <option value="">Selecione...</option>
-                    <option value="Masculino">Masculino</option>
-                    <option value="Feminino">Feminino</option>
-                    <option value="Outro">Outro</option>
-                    <option value="Prefiro não informar">Prefiro não informar</option>
+                    <option value="Masculino" <?php echo ($genero === 'Masculino') ? 'selected' : ''; ?>>Masculino</option>
+                    <option value="Feminino" <?php echo ($genero === 'Feminino') ? 'selected' : ''; ?>>Feminino</option>
+                    <option value="Outro" <?php echo ($genero === 'Outro') ? 'selected' : ''; ?>>Outro</option>
+                    <option value="Prefiro não informar" <?php echo ($genero === 'Prefiro não informar') ? 'selected' : ''; ?>>Prefiro não informar</option>
                 </select>
 
                 <label for="cpf">CPF:</label>
@@ -72,10 +121,10 @@
                 <input type="text" id="cep" name="cep" placeholder="XXXXX-XXX" value="<?php echo $cep; ?>">
 
                 <label for="rua">Rua:</label>
-                <input type="text" id="rua" name="rua" placeholder="Nome da Rua" value="<?php echo $rua; ?>">
+                <input type="text" id="rua" name="rua" placeholder="Nome da Rua" value="<?php echo $logradouro; ?>">
 
                 <label for="numero">Número:</label>
-                <input type="text" id="numero" name="numero" placeholder="Número" value="<?php echo $numero; ?>">
+                <input type="text" id="numero" name="numero" placeholder="Número" value="<?php echo $numeroEndereco; ?>">
 
                 <label for="bairro">Bairro:</label>
                 <input type="text" id="bairro" name="bairro" placeholder="Nome do Bairro" value="<?php echo $bairro; ?>">
