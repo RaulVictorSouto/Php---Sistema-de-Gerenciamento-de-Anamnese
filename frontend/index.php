@@ -29,7 +29,7 @@
                             echo "<td>" . htmlspecialchars($row["NOME"]) . "</td>";
                             echo "<td>" . htmlspecialchars($row["DataCadastroPaciente"]) . "</td>";
                             echo "<td>";
-                            echo "<a href='edit.php?id=" . urlencode($row["IdPaciente"]) . "'>Editar</a> | ";
+                            echo "<a href='./atualizarPaciente.php?id=" . urlencode($row["IdPaciente"]) . "'>Editar</a> | ";
                             echo "<a href='../backend/deletePaciente.php?id=" . urlencode($row["IdPaciente"]) . "' onclick='return confirm(\"Você tem certeza que deseja excluir este paciente?\");'>Excluir</a>";
                             echo "</td>";
                             echo "</tr>";
