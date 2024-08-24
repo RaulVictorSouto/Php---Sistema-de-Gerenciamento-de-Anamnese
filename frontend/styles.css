@@ -70,3 +70,14 @@ select {
     background-color: #fff;
 }
 
+tr {
+    cursor: pointer;
+}
+
+tr a {
+    text-decoration: none;
+}
+
+tr a:hover {
+    text-decoration: underline;
+}

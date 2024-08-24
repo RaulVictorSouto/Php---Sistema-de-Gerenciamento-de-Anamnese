@@ -4,15 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="styles.css" rel="stylesheet">
-    <title>Lista de Pacientes</title>
+    <title>Lista de Anamneses</title>
 </head>
 <body>
     <div class="container">
-        <h1>Lista de Pacientes</h1>
+        <h1>Lista de Anamneses</h1>
         <table>
             <thead>
                 <tr>
-                    <th>Nome</th>
                     <th>Data de Cadastro</th>
                     <th>Ações</th>
                 </tr>
@@ -22,27 +21,33 @@
                     // chama o arquivo de conexão
                     require '../backend/connection.php';
 
-                    if ($result->num_rows > 0) {
-                        // cria a lista de pacientes
-                        while($row = $result->fetch_assoc()) {
-                            echo "<tr onclick=\"window.location.href='./listaAnamneses.php?id=" . urlencode($row["IdPaciente"]) . "';\" style='cursor: pointer;'>";
-                            echo "<td>" . htmlspecialchars($row["NOME"]) . "</td>";
-                            echo "<td>" . htmlspecialchars($row["DataCadastroPaciente"]) . "</td>";
+                    if ($resultAnamnese->num_rows > 0) 
+                    {
+                        echo "Número de resultados: " . $resultAnamnese->num_rows . "<br>";
+                        while($row = $resultAnamnese->fetch_assoc()) {
+                            echo "Dados retornados: ";
+                            print_r($row);
+                            echo "<br>";
+                            echo "<tr>";
+                            echo "<td>" . htmlspecialchars($row["DataCadastroAnamnese"]) . "</td>";
                             echo "<td>";
-                            echo "<a href='./atualizarPaciente.php?id=" . urlencode($row["IdPaciente"]) . "'>Editar</a> | ";
-                            echo "<a href='../backend/deletePaciente.php?id=" . urlencode($row["IdPaciente"]) . "' onclick='return confirm(\"Você tem certeza que deseja excluir este paciente?\");'>Excluir</a>";
+                            echo "<a href='../backend/deleteAnamnese.php?id=" . urlencode($row["IdAnamnese"]) . "' onclick='return confirm(\"Você tem certeza que deseja excluir esta anamnese?\");'>Excluir</a>";
                             echo "</td>";
                             echo "</tr>";
                         }
-                    } else {
-                        echo "<tr><td colspan='3'>Nenhum paciente encontrado</td></tr>";
+                    } 
+                    else
+                    {
+                        echo "<tr><td colspan='2'>Nenhuma anamnese encontrada</td></tr>";
                     }
+                    
                 ?>
             </tbody>
         </table>
 
         <div class="botaoCadastrar">
-            <button onclick="window.location.href='cadastroPaciente.php';">Cadastrar Novo Paciente</button>
+            <button onclick="window.location.href='cadastroAnamnese.php?id=<?php echo urlencode($idPaciente); ?>';">Cadastrar Nova Anamnese</button>
+
         </div>
 
         <script>
@@ -79,4 +84,3 @@
     </div>
 </body>
 </html>
-
