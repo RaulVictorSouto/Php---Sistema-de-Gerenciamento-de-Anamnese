@@ -17,7 +17,7 @@ if ($result === false) {
 
 //seleção de anamnese
 $idPaciente = mysqli_real_escape_string($conn, $_GET['id'] ?? '');
-$sqlAnamnese = "SELECT IdAnamnese, DataCadastroAnamnese FROM tblanamneses WHERE IdPaciente = '$idPaciente'";
+$sqlAnamnese = "SELECT IdAnamnese, IdPaciente, DataCadastroAnamnese FROM tblanamneses WHERE IdPaciente = '$idPaciente'";
 $resultAnamnese = $conn->query($sqlAnamnese);
 
 if ($resultAnamnese === false) {

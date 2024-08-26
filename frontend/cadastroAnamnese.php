@@ -9,8 +9,20 @@
 <body>
     <div class="container">
         <h1>Registro de Anamnese</h1>
+
+        <?php
+            // Incluir o arquivo de conexão com o banco de dados
+            require '../backend/connection.php';
+
+            // Verifica se o id foi passado e atribui à variável
+            if (isset($_GET['idPaciente']) && !empty($_GET['idPaciente'])) {
+                $idPaciente = mysqli_real_escape_string($conn, $_GET['idPaciente']);
+            } 
+        ?>
+
+
         <form action="../backend/insertAnamnese.php" method="POST">
-            <input type="hidden" id="id" name="id" value="<?php echo htmlspecialchars($idPaciente); ?>">
+            <input type="hidden" id="idPaciente" name="idPaciente" value="<?php echo htmlspecialchars($idPaciente); ?>">
             <!-- Queixa Principal -->
             <div class="form-group">
                 <label for="queixaPrincipal">Queixa Principal:</label>
@@ -53,7 +65,7 @@
                 <textarea id="planoDiagnostico" name="planoDiagnostico" rows="4"></textarea>
             </div>
 
-            <button type="submit">Salvar Anamnese</button>
+            <button type="submit" onclick="window.location.href='./listaAnamneses.php';">Cadastrar Anamnese</button>
         </form>
     </div>
 

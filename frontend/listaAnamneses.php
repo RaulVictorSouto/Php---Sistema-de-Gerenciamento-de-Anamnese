@@ -23,15 +23,14 @@
 
                     if ($resultAnamnese->num_rows > 0) 
                     {
-                        echo "Número de resultados: " . $resultAnamnese->num_rows . "<br>";
-                        while($row = $resultAnamnese->fetch_assoc()) {
-                            echo "Dados retornados: ";
-                            print_r($row);
+                        while($row = $resultAnamnese->fetch_assoc()) 
+                        {
                             echo "<br>";
                             echo "<tr>";
                             echo "<td>" . htmlspecialchars($row["DataCadastroAnamnese"]) . "</td>";
                             echo "<td>";
-                            echo "<a href='../backend/deleteAnamnese.php?id=" . urlencode($row["IdAnamnese"]) . "' onclick='return confirm(\"Você tem certeza que deseja excluir esta anamnese?\");'>Excluir</a>";
+                            echo "<a href='./atualizarAnamnese.php?id=" . urlencode($row["IdAnamnese"]) . "'>Editar</a> | ";
+                            echo "<a href='../backend/deleteAnamnese.php?idAnamnese=" . urlencode($row["IdAnamnese"]) . "&idPaciente=" . urlencode($row["IdPaciente"]) . "' onclick='return confirm(\"Você tem certeza que deseja excluir esta anamnese?\");'>Excluir</a>";
                             echo "</td>";
                             echo "</tr>";
                         }

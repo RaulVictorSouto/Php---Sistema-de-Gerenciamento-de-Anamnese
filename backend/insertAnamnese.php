@@ -6,10 +6,10 @@ require './connection.php';
 // mysqli_real_escape_string -> limpar a string que, no caso, será enviada ao banco de dados.
 //Evita SQL Injection
 
-$idPaciente = mysqli_real_escape_string($conn, $_POST['id'] ?? '');
-if (empty($idPaciente)) {
-    echo "ID do paciente não fornecido.";
-    exit();
+$idPaciente =  mysqli_real_escape_string($conn, $_POST['idPaciente'] ?? '');
+
+if ($idPaciente <= 0) {
+    die("ID do paciente inválido. Valor recebido: " . var_export($idPaciente, true));
 }
 
 $queixaPrincipal = mysqli_real_escape_string($conn, $_POST['queixaPrincipal'] ?? '');
@@ -36,7 +36,8 @@ $sql = "INSERT INTO tblanamneses
 
 // Executa a declaração
 if ($conn->query($sql) === TRUE) {
-    header("Location: ../frontend/cadastroAnamnese.php?message=success");
+    header("Location: ../frontend/listaAnamneses.php?id=" . urlencode($idPaciente));
+    exit();
 } else {
     // Exibe a mensagem de erro completa para depuração
     echo "Erro: " . $conn->error;
