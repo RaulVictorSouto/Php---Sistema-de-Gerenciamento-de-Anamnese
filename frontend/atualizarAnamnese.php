@@ -93,12 +93,14 @@
                 <label for="planoDiagnostico">Plano Diagnóstico:</label>
                 <textarea id="planoDiagnostico" name="planoDiagnostico" rows="4"><?php echo htmlspecialchars($planoDiagnostico); ?></textarea>
             </div>
-
-            <button type="submit">Atualizar Anamnese</button>
-            <button onclick="window.location.href='./listaAnamneses.php?idPaciente=<?php echo urlencode($idPaciente); ?>'">Voltar</button>
-
+            <button type="submit" class="botoes">Atualizar Anamnese</button>
+            
         </form>
 
+        <form action="http://localhost:8080/anamnese/frontend/listaAnamneses.php" method="GET">
+            <input type="hidden" name="id" value="<?php echo urlencode($idPaciente); ?>">
+            <button type="submit" class="botaoVoltar">Voltar</button>
+        </form>
     </div>
 
 </body>

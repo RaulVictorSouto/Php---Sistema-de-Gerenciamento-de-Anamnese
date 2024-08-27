@@ -83,24 +83,113 @@ tr a:hover {
 }
 
 /* Button Styles */
-button {
-    background-color: #4CAF50; /* Green background */
-    border: none; /* Remove borders */
-    color: white; /* White text */
-    padding: 12px 24px; /* Some padding */
-    text-align: center; /* Center the text */
-    text-decoration: none; /* Remove underline */
-    display: inline-block; /* Make the button inline */
-    font-size: 16px; /* Increase font size */
-    margin: 4px 2px; /* Some margin */
-    cursor: pointer; /* Add a pointer on hover */
-    border-radius: 8px; /* Rounded corners */
-    transition-duration: 0.4s; /* Animation duration */
+button, .botaoCadastrar button {
+    margin-top: 10px;
+    background-color: #4CAF50; /* Cor de fundo */
+    border: none; /* Remove bordas */
+    color: white; /* Cor do texto */
+    padding: 12px 24px; /* Espaçamento interno */
+    text-align: center; /* Alinhamento do texto */
+    text-decoration: none; /* Remove sublinhado */
+    display: inline-block; /* Exibição inline */
+    font-size: 16px; /* Tamanho da fonte */
+    margin: 4px 2px; /* Espaçamento externo */
+    cursor: pointer; /* Cursor de ponteiro */
+    border-radius: 8px; /* Borda arredondada */
+    transition-duration: 0.4s; /* Duração da transição */
 }
 
-/* Hover effects */
-button:hover {
-    background-color: white; /* White background */
-    color: black; /* Black text */
-    border: 2px solid #4CAF50; /* Green border */
+button:hover, .botaoCadastrar button:hover {
+    background-color: #45a049; /* Cor de fundo ao passar o mouse */
+    box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.2); /* Sombra ao passar o mouse */
+}
+
+.botaoVoltar {
+    margin-top: 10px;
+    background-color: #b51919; /* Cor de fundo */
+    border: none; /* Remove bordas */
+    color: white; /* Cor do texto */
+    padding: 12px 24px; /* Espaçamento interno */
+    text-align: center; /* Alinhamento do texto */
+    text-decoration: none; /* Remove sublinhado */
+    display: inline-block; /* Exibição inline */
+    font-size: 16px; /* Tamanho da fonte */
+    margin: 4px 2px; /* Espaçamento externo */
+    cursor: pointer; /* Cursor de ponteiro */
+    border-radius: 8px; /* Borda arredondada */
+    transition-duration: 0.4s; /* Duração da transição */
+    margin-bottom: 50px;
+}
+
+.botaoVoltar:hover {
+    background-color: #931515; /* Cor de fundo ao passar o mouse */
+    box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.2); /* Sombra ao passar o mouse */
+}
+
+.botoes
+{
+    display: inline-block;
+}
+
+/* Formulário */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+input[type="text"],
+input[type="date"],
+input[type="tel"],
+select,
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+textarea {
+    resize: vertical;
+}
+
+/* Layout */
+.dadosBasicos,
+.telefones,
+.endereco {
+    margin-bottom: 20px;
+}
+
+.dadosBasicos label,
+.telefones label,
+.endereco label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.dadosBasicos input,
+.telefones input,
+.endereco input,
+.dadosBasicos select,
+.endereco select {
+    margin-bottom: 10px;
+}
+
+.dadosBasicos,
+.telefones,
+.endereco {
+    background: #f9f9f9;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 }

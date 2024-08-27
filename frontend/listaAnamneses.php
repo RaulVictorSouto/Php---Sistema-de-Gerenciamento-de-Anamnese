@@ -44,13 +44,9 @@
             </tbody>
         </table>
 
-        <div class="botaoCadastrar">
-            <button onclick="window.location.href='cadastroAnamnese.php?idPaciente=<?php echo urlencode($idPaciente); ?>';">Cadastrar Nova Anamnese</button>
-
-        </div>
-
-        <div>
-            <button onclick="window.location.href='index.php'">Voltar</button>
+        <div class="botoes">
+            <button onclick="window.location.href='cadastroAnamnese.php?idPaciente=<?php echo urlencode($idPaciente); ?>';" class="botaoCadastrar">Cadastrar Nova Anamnese</button>
+            <button onclick="window.location.href='index.php'" class="botaoVoltar">Voltar</button>
         </div>
 
         <script>

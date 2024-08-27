@@ -168,7 +168,7 @@
             <!-- Endereço -->
 
             <button type="submit" onclick="window.location.href='index.php';">Atualizar</button>
-            <button onclick="window.location.href='index.php'">Voltar</button>
+            <button onclick="window.location.href='index.php'" class="botaoVoltar">Voltar</button>
         </form>
     </div>
 </body>
