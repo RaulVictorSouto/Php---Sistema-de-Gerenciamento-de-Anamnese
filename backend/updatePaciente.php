@@ -48,12 +48,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
         NumeroEnderecoPaciente = '$numeroEndereco',
         BairroPaciente = '$bairro',
         CidadePaciente = '$cidade',
-        EstadoPaciente = '$estado',
+        EstadoPaciente = '$estado'
         WHERE IdPaciente = '$idPaciente'";
 
     // Executa a declaração
     if ($conn->query($sql) === TRUE) {
-        header("Location: ../frontend/index.php?message=successUpdate");
+        header("Location: ../frontend/listaAnamnese.php?id=" . urlencode($idPaciente) . "&message=" . urlencode("updateanamnese"));
         exit();
     } else {
         // Exibe a mensagem de erro completa para depuração

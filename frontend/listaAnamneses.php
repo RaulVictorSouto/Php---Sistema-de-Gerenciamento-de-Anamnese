@@ -55,21 +55,19 @@
 
         <script>
             // função para exibir o alerta com base na mensagem da query string
-            function showAlertInsert(message) 
+            function showAlert(message) 
             {
-                if (message === 'success') {
-                    alert('Paciente cadastrado com sucesso!');
-                } else if (message === 'error') {
-                    alert('Erro ao cadastrar paciente.');
-                }
-            }
-
-            function showAlertUpdate(message) 
-            {
-                if (message === 'successUpdate') {
-                    alert('Paciente atualizado com sucesso!');
-                } else if (message === 'error') {
-                    alert('Erro ao atualizar paciente.');
+                if (message === 'successanamnese') 
+                {
+                    alert('Anamnese cadastrada com sucesso!');
+                } 
+                else if (message === 'updateanamnese') 
+                {
+                    alert('Anamnese atualizada com sucesso!');
+                } 
+                else if (message === 'error') 
+                {
+                    alert('Ocorreu um erro.');
                 }
             }
 
@@ -80,7 +78,7 @@
             //mostrar o alerta se houver mensagem
             if (message) 
             {
-                showAlertInsert(message);
+                showAlert(message);
             }
         </script>
         

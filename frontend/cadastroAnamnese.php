@@ -70,7 +70,7 @@
             </div>
 
             <button type="submit" onclick="window.location.href='./listaAnamneses.php';">Cadastrar Anamnese</button>
-            <button onclick="window.location.href='./listaAnamneses.php'">Voltar</button>
+            <button onclick="window.location.href='./listaAnamneses.php?id=<?php echo urlencode($idPaciente); ?>'">Voltar</button>
         </form>
     </div>
 

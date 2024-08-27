@@ -33,7 +33,7 @@
         
          // Executa a declaração
             if ($conn->query($sql) === TRUE) {
-                header("Location: ../frontend/listaAnamneses.php?id=" . urlencode($idPaciente));
+                header("Location: ../frontend/listaAnamneses.php?id=" . urlencode($idPaciente) . "&message=" . urlencode("updateanamnese"));
                 exit();
             } else {
                 // Exibe a mensagem de erro completa para depuração

@@ -95,7 +95,8 @@
             </div>
 
             <button type="submit">Atualizar Anamnese</button>
-            <button onclick="window.location.href='./listaAnamneses.php'">Voltar</button>
+            <button onclick="window.location.href='./listaAnamneses.php?idPaciente=<?php echo urlencode($idPaciente); ?>'">Voltar</button>
+
         </form>
 
     </div>

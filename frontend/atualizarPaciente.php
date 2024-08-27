@@ -12,7 +12,7 @@
 
         <?php
             require '../backend/connection.php';
-            $idPaciente = mysqli_real_escape_string($conn, $_GET['idPaciente'] ?? '');
+            $idPaciente = mysqli_real_escape_string($conn, $_GET['id'] ?? '');
 
             if (empty($idPaciente)) {
                 die("ID do paciente não fornecido.");
