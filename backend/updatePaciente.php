@@ -53,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 
     // Executa a declaração
     if ($conn->query($sql) === TRUE) {
-        header("Location: ../frontend/listaAnamnese.php?id=" . urlencode($idPaciente) . "&message=" . urlencode("updateanamnese"));
+        header("Location: ../frontend/index.php?message=successUpdate");
         exit();
     } else {
         // Exibe a mensagem de erro completa para depuração
