@@ -9,7 +9,8 @@ if (empty($idPaciente)) {
 }
 
 // Verifica se os dados foram enviados via POST
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+if ($_SERVER['REQUEST_METHOD'] == 'POST') 
+{
     // Obtém e sanitiza os dados do formulário
     $nome = mysqli_real_escape_string($conn, $_POST['nome'] ?? '');
     $sobrenome = mysqli_real_escape_string($conn, $_POST['sobrenome'] ?? '');
@@ -48,7 +49,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         BairroPaciente = '$bairro',
         CidadePaciente = '$cidade',
         EstadoPaciente = '$estado',
-        DataCadastroPaciente = CURRENT_TIMESTAMP
         WHERE IdPaciente = '$idPaciente'";
 
     // Executa a declaração

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro de Anamnese</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Inclua o caminho para seu arquivo CSS -->
+    <link rel="stylesheet" href="styles.css"> 
 </head>
 <body>
     <div class="container">
@@ -18,6 +18,10 @@
             if (isset($_GET['idPaciente']) && !empty($_GET['idPaciente'])) {
                 $idPaciente = mysqli_real_escape_string($conn, $_GET['idPaciente']);
             } 
+            else
+            {
+                die("ID do paciente não fornecido.");
+            }
         ?>
 
 
@@ -66,6 +70,7 @@
             </div>
 
             <button type="submit" onclick="window.location.href='./listaAnamneses.php';">Cadastrar Anamnese</button>
+            <button onclick="window.location.href='./listaAnamneses.php'">Voltar</button>
         </form>
     </div>
 

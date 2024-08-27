@@ -118,6 +118,7 @@
             <!-- Endereço -->
 
             <button type="submit" onclick="window.location.href='index.php';">Cadastrar</button>
+            <button onclick="window.location.href='index.php'">Voltar</button>
         </form>
     </div>
 </body>

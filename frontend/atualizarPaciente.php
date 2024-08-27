@@ -12,7 +12,7 @@
 
         <?php
             require '../backend/connection.php';
-            $idPaciente = mysqli_real_escape_string($conn, $_GET['id'] ?? '');
+            $idPaciente = mysqli_real_escape_string($conn, $_GET['idPaciente'] ?? '');
 
             if (empty($idPaciente)) {
                 die("ID do paciente não fornecido.");
@@ -168,6 +168,7 @@
             <!-- Endereço -->
 
             <button type="submit" onclick="window.location.href='index.php';">Atualizar</button>
+            <button onclick="window.location.href='index.php'">Voltar</button>
         </form>
     </div>
 </body>

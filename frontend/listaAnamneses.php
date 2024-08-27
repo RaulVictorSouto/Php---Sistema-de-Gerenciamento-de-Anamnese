@@ -25,14 +25,14 @@
                     {
                         while($row = $resultAnamnese->fetch_assoc()) 
                         {
-                            echo "<br>";
-                            echo "<tr>";
+                            echo "<tr onclick=\"window.location.href='./atualizarAnamnese.php?idAnamnese=" . urlencode($row["IdAnamnese"]) . "';\" style='cursor: pointer;'>";
                             echo "<td>" . htmlspecialchars($row["DataCadastroAnamnese"]) . "</td>";
                             echo "<td>";
-                            echo "<a href='./atualizarAnamnese.php?id=" . urlencode($row["IdAnamnese"]) . "'>Editar</a> | ";
+                            echo "<a href='./atualizarAnamnese.php?idAnamnese=" . urlencode($row["IdAnamnese"]) . "'>Editar</a> | ";
                             echo "<a href='../backend/deleteAnamnese.php?idAnamnese=" . urlencode($row["IdAnamnese"]) . "&idPaciente=" . urlencode($row["IdPaciente"]) . "' onclick='return confirm(\"Você tem certeza que deseja excluir esta anamnese?\");'>Excluir</a>";
                             echo "</td>";
                             echo "</tr>";
+                            
                         }
                     } 
                     else
@@ -45,8 +45,12 @@
         </table>
 
         <div class="botaoCadastrar">
-            <button onclick="window.location.href='cadastroAnamnese.php?id=<?php echo urlencode($idPaciente); ?>';">Cadastrar Nova Anamnese</button>
+            <button onclick="window.location.href='cadastroAnamnese.php?idPaciente=<?php echo urlencode($idPaciente); ?>';">Cadastrar Nova Anamnese</button>
 
+        </div>
+
+        <div>
+            <button onclick="window.location.href='index.php'">Voltar</button>
         </div>
 
         <script>
